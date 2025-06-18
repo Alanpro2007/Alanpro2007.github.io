@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Materias de la Escuela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+      color: #004080;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background-color: #e6f0ff;
+      margin: 8px 0;
+      padding: 10px 15px;
+      border-left: 5px solid #004080;
+      border-radius: 5px;
+    }
+
+    .form-materia {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .form-materia input,
+    .form-materia select {
+      padding: 10px;
+      border: 2px solid #004080;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .form-materia button {
+      padding: 10px 20px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-materia button:hover {
+      background-color: #003366;
+    }
+
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+    }
+
+    .boton-regresar {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      background-color: #004080;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+
+    .boton-regresar:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Materias que Verás en la Escuela</h1>
+</header>
+
+<main>
+  <h2>Lista de Materias por Semestre</h2>
+
+  <h3>Primer Semestre</h3>
+  <ul id="semestre1">
+    <li>Matemáticas I</li>
+    <li>Lengua y Literatura I</li>
+    <li>Biología I</li>
+    <li>Inglés I</li>
+    <li>Historia de México I</li>
+    <li>Taller de Lectura y Redacción</li>
+    <li>Educación Física I</li>
+  </ul>
+
+  <h3>Segundo Semestre</h3>
+  <ul id="semestre2">
+    <li>Matemáticas II</li>
+    <li>Lengua y Literatura II</li>
+    <li>Biología II</li>
+    <li>Inglés II</li>
+    <li>Historia de México II</li>
+    <li>Ética I</li>
+    <li>Educación Física II</li>
+  </ul>
+
+  <h3>Tercer Semestre</h3>
+  <ul id="semestre3">
+    <li>Química I</li>
+    <li>Física I</li>
+    <li>Geografía</li>
+    <li>Inglés III</li>
+    <li>Lógica</li>
+    <li>Matemáticas III</li>
+  </ul>
+
+  <h3>Cuarto Semestre</h3>
+  <ul id="semestre4">
+    <li>Química II</li>
+    <li>Física II</li>
+    <li>Ecología</li>
+    <li>Matemáticas IV</li>
+    <li>Ética II</li>
+    <li>Inglés IV</li>
+  </ul>
+
+  <h3>Quinto Semestre</h3>
+  <ul id="semestre5">
+    <li>Filosofía</li>
+    <li>Probabilidad y Estadística</li>
+    <li>Informática</li>
+    <li>Orientación Vocacional I</li>
+    <li>Temas Selectos I</li>
+  </ul>
+
+  <h3>Sexto Semestre</h3>
+  <ul id="semestre6">
+    <li>Sociología</li>
+    <li>Temas Selectos II</li>
+    <li>Orientación Vocacional II</li>
+    <li>Tecnología de la Información</li>
+    <li>Proyecto de Investigación</li>
+  </ul>
+
+  <!-- Formulario para agregar materia -->
+  <div class="form-materia">
+    <input type="text" id="nuevaMateria" placeholder="Escribe una nueva materia">
+    <select id="seleccionarSemestre">
+      <option value="semestre1">1° Semestre</option>
+      <option value="semestre2">2° Semestre</option>
+      <option value="semestre3">3° Semestre</option>
+      <option value="semestre4">4° Semestre</option>
+      <option value="semestre5">5° Semestre</option>
+      <option value="semestre6">6° Semestre</option>
+    </select>
+    <button onclick="agregarMateria()">Agregar</button>
+  </div>
+</main>
+
+<footer>
+  <p>Preparatoria 202 © 2025 - Todos los derechos reservados</p>
+  <a class="boton-regresar" href="index.html">⬅ Regresar</a>
+</footer>
+
+<script>
+  function agregarMateria() {
+    const input = document.getElementById("nuevaMateria");
+    const select = document.getElementById("seleccionarSemestre");
+    const materia = input.value.trim();
+    const semestreId = select.value;
+
+    if (materia !== "") {
+      const lista = document.getElementById(semestreId);
+      const nuevaLi = document.createElement("li");
+      nuevaLi.textContent = materia;
+      lista.appendChild(nuevaLi);
+      input.value = "";
+    } else {
+      alert("Por favor escribe el nombre de la materia.");
+    }
+  }
+</script>
+
+</body>
+</html>
